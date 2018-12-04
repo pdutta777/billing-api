@@ -1,1 +1,2 @@
-#Fill in dependencies here
+flask-restplus==0.12.1
+snowflake-connector-python==1.6.3
