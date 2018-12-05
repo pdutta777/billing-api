@@ -19,7 +19,7 @@ billing_model = api.model("billing_calls", {
 })
 
 
-@api.route('/billing/calls/csv')
+@api.route('/billing/calls/')
 class BillingCalls(Resource):
 
     @api.marshal_with(billing_model, envelope='data')
@@ -30,14 +30,19 @@ class BillingCalls(Resource):
         """
 
         inp = api.payload
+        # Get the password secret
+        fp = open('/tmp/sfpass/secrets.txt')
+        line = fp.readline()
+        fp.close()
+        pw = line.rstrip()
         conn = snowflake.connector.connect(
             user='aam_tableau',
-            password='ILL7y1Asg6',
+            password=pw,
             account='adobe',
             database='aam_prod_datawarehouse',
             schema='dw',
             role='aam_role_readonly',
-            warehouse='adbe_aam_admin',
+            warehouse='dev_pdutta',
             insecure_mode=True
         )
         curs = conn.cursor()
