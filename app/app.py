@@ -5,7 +5,7 @@ from flask import Flask
 from flask_restplus import Api, Resource, fields
 
 app = Flask(__name__)
-api = Api(app, version='1.0', title='Billing CSV Api', description='An Api to Retrieve Billing Data For a Customer')
+api = Api(app, version='1.0', title='Billing CSV Api', description='An API to Retrieve Billing Data For a Customer')
 
 input_model = api.model("input", {
     "pid": fields.String("Customer ID"),
